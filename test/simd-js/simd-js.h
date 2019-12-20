@@ -95,11 +95,10 @@
     return MUNIT_OK;                                                    \
   }
 
-MunitSuite simde_simd_js_int32x4_test_suite;
-MunitSuite simde_simd_js_int32x4_emul_test_suite;
-MunitSuite simde_simd_js_int32x4_cmp_test_suite;
-
-MunitSuite simde_simd_js_float32x4_test_suite;
+HEDLEY_C_DECL MunitSuite simde_simd_js_int32x4_test_suite;
+HEDLEY_C_DECL MunitSuite simde_simd_js_int32x4_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_simd_js_int32x4_cmp_test_suite;
+HEDLEY_C_DECL MunitSuite simde_simd_js_float32x4_test_suite;
 
 #define simde_assert_int32x4(a, op, b) \
   simde_assert_int32v(4, (const int32_t*) &(a), op, (const int32_t*) &(b))

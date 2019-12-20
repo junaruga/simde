@@ -36,6 +36,8 @@
 __pragma(warning(disable:4132 4204))
 #endif
 
+HEDLEY_BEGIN_C_DECLS
+
 #if defined(SIMDE__ENABLE_DEBUG_ARRAY)
 void debug_array_u8(const char* prefix, size_t nmemb, uint8_t v[HEDLEY_ARRAY_PARAM(nmemb)]);
 void debug_array_u16(const char* prefix, size_t nmemb, uint16_t v[HEDLEY_ARRAY_PARAM(nmemb)]);
@@ -199,5 +201,7 @@ simde_float32 random_f32_range(simde_float32 min, simde_float32 max);
 
 #define TEST_FUNC_CMP(name) \
   { (char*) "/" #name "/cmp", test_simde_##name, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }
+
+HEDLEY_END_C_DECLS
 
 #endif /* !defined(SIMDE_TEST_H) */

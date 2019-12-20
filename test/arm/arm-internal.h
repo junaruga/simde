@@ -19,8 +19,8 @@
 #endif
 
 #define SIMDE_NEON_DECLARE_TEST_SUITE(name) \
-  MunitSuite simde_neon_##name##_test_suite; \
-  MunitSuite simde_neon_##name##_emul_test_suite;
+  HEDLEY_C_DECL MunitSuite simde_neon_##name##_test_suite; \
+  HEDLEY_C_DECL MunitSuite simde_neon_##name##_emul_test_suite;
 
 SIMDE_NEON_DECLARE_TEST_SUITE(vadd)
 SIMDE_NEON_DECLARE_TEST_SUITE(vdup_n)

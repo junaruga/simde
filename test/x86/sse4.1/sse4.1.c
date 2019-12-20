@@ -1358,22 +1358,22 @@ test_simde_mm_extract_epi64(const MunitParameter params[], void* data) {
     simde__m128i a;
     int64_t r;
   } test_vec[8] = {
-    { simde_mm_set_epi64x(UINT64_C(0x2d6953577f6833d6), UINT64_C(0x16f735ecbef74fb0)),
-      UINT64_C(0x2d6953577f6833d6) },
-    { simde_mm_set_epi64x(UINT64_C(0xaaf04de6a347535b), UINT64_C(0x7788e3823cf2dd88)),
-      UINT64_C(0xaaf04de6a347535b) },
-    { simde_mm_set_epi64x(UINT64_C(0xac0b5ad60a8ae313), UINT64_C(0xd8ff1f0e49d5732f)),
-      UINT64_C(0xac0b5ad60a8ae313) },
-    { simde_mm_set_epi64x(UINT64_C(0x14a013af8adde846), UINT64_C(0x94084d3fce3dc16a)),
-      UINT64_C(0x14a013af8adde846) },
-    { simde_mm_set_epi64x(UINT64_C(0xbbdc18f6133d616c), UINT64_C(0xaf38bb2c8ccea04d)),
-      UINT64_C(0xbbdc18f6133d616c) },
-    { simde_mm_set_epi64x(UINT64_C(0xe54cff88e2d2bf95), UINT64_C(0xb26d52ff06ed52cc)),
-      UINT64_C(0xe54cff88e2d2bf95) },
-    { simde_mm_set_epi64x(UINT64_C(0xcf0c1539d8ce6a60), UINT64_C(0x3f166cf969999ecb)),
-      UINT64_C(0xcf0c1539d8ce6a60) },
-    { simde_mm_set_epi64x(UINT64_C(0x54fa14fce453dab2), UINT64_C(0x192a2e66cbd255b7)),
-      UINT64_C(0x54fa14fce453dab2) }
+    { simde_mm_set_epi64x(INT64_C(   3272238239526171606), INT64_C(   1654850679014379440)),
+      INT64_C(   3272238239526171606) },
+    { simde_mm_set_epi64x(INT64_C(  -6129313439874067621), INT64_C(   8613384435853876616)),
+      INT64_C(  -6129313439874067621) },
+    { simde_mm_set_epi64x(INT64_C(  -6049641799095753965), INT64_C(  -2810493496227171537)),
+      INT64_C(  -6049641799095753965) },
+    { simde_mm_set_epi64x(INT64_C(   1486209521702266950), INT64_C(  -7779883419844099734)),
+      INT64_C(   1486209521702266950) },
+    { simde_mm_set_epi64x(INT64_C(  -4910022048576872084), INT64_C(  -5820696718361059251)),
+      INT64_C(  -4910022048576872084) },
+    { simde_mm_set_epi64x(INT64_C(  -1923881977407946859), INT64_C(  -5589720307210562868)),
+      INT64_C(  -1923881977407946859) },
+    { simde_mm_set_epi64x(INT64_C(  -3527421069943215520), INT64_C(   4545940692351426251)),
+      INT64_C(  -3527421069943215520) },
+    { simde_mm_set_epi64x(INT64_C(   6123229719758625458), INT64_C(   1813312819011147191)),
+      INT64_C(   6123229719758625458) }
   };
 
   for (size_t i = 0 ; i < (sizeof(test_vec) / sizeof(test_vec[0])); i++) {

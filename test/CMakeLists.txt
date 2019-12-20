@@ -61,8 +61,6 @@ if("${CLOCK_GETTIME_EXISTS}")
   target_link_libraries(munit "${CLOCK_GETTIME_LIBRARY}")
 endif()
 
-include_directories("${CMAKE_SOURCE_DIR}/..")
-
 set(TEST_SOURCES)
 
 if(NOT DISABLE_X86)
@@ -92,12 +90,31 @@ list(APPEND TEST_SOURCES
   arm/neon/vmul.c
   arm/neon/vsub.c)
 
+set(TEST_CPP_SOURCES)
+foreach(src ${TEST_SOURCES})
+  get_filename_component(srcdir "${CMAKE_CURRENT_SOURCE_DIR}/${src}" DIRECTORY)
+  get_filename_component(destdir "${CMAKE_CURRENT_BINARY_DIR}/${src}" DIRECTORY)
+  if(NOT EXISTS "${destdir}")
+    file(MAKE_DIRECTORY "${destdir}")
+  endif()
+  string(CONCAT dest "${src}" "pp")
+  configure_file("${src}" "${dest}" COPYONLY)
+  set_property(SOURCE "${dest}" APPEND PROPERTY "INCLUDE_DIRECTORIES" "${srcdir}")
+  list(APPEND TEST_CPP_SOURCES "${dest}")
+endforeach()
+
 add_library(simde-test-no-native STATIC ${TEST_SOURCES})
 target_compile_definitions(simde-test-no-native PRIVATE SIMDE_NO_NATIVE)
 set_property(TARGET simde-test-no-native PROPERTY C_STANDARD "99")
 
+add_library(simde-test-cpp-no-native STATIC ${TEST_CPP_SOURCES})
+target_compile_definitions(simde-test-cpp-no-native PRIVATE SIMDE_NO_NATIVE)
+
 add_library(simde-test-native STATIC ${TEST_SOURCES})
 set_property(TARGET simde-test-native PROPERTY C_STANDARD "99")
+
+add_library(simde-test-cpp-native STATIC ${TEST_CPP_SOURCES})
+target_compile_definitions(simde-test-cpp-native PRIVATE SIMDE_NO_NATIVE)
 
 set_compiler_specific_flags(
   VARIABLE extra_cflags
@@ -120,6 +137,25 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${extra_cflags}")
 
 add_executable(run-tests test.c test-common.c)
 target_link_libraries(run-tests munit simde-test-no-native simde-test-native)
+
+check_cxx_compiler_flag("-fopenmp-simd" CXXFLAG__fopenmp_simd)
+check_cxx_compiler_flag("-qopenmp-simd" CXXFLAG__qopenmp_simd)
+if(CXXFLAG__fopenmp_simd)
+  set(extra_cxxflags "${extra_cxxflags} -fopenmp-simd -DSIMDE_ENABLE_OPENMP")
+elseif(CXXFLAG__qopenmp_simd)
+  set(extra_cxxflags "${extra_cxxflags} -qopenmp-simd -DSIMDE_ENABLE_OPENMP")
+endif()
+
+check_cxx_compiler_flag("-mfpu=neon -Werror" CFLAG__mfpu_neon)
+if(CXXFLAG__mfpu_neon)
+  set(extra_cxxflags "${extra_cflags} -mfpu=neon")
+endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${extra_cxxflags}")
+
+add_executable(run-tests-cpp "test.c" "test-common.c")
+target_include_directories(run-tests-cpp PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+target_link_libraries(run-tests-cpp munit simde-test-cpp-no-native simde-test-cpp-native)
 
 if(LIBM)
   target_link_libraries(run-tests ${LIBM})

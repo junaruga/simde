@@ -30,35 +30,35 @@
 
 #include "../test.h"
 
-MunitSuite simde_mmx_test_suite;
-MunitSuite simde_mmx_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_mmx_test_suite;
+HEDLEY_C_DECL MunitSuite simde_mmx_emul_test_suite;
 
-MunitSuite simde_sse_test_suite;
-MunitSuite simde_sse_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse_emul_test_suite;
 
-MunitSuite simde_sse2_test_suite;
-MunitSuite simde_sse2_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse2_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse2_emul_test_suite;
 
-MunitSuite simde_sse3_test_suite;
-MunitSuite simde_sse3_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse3_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse3_emul_test_suite;
 
-MunitSuite simde_ssse3_test_suite;
-MunitSuite simde_ssse3_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_ssse3_test_suite;
+HEDLEY_C_DECL MunitSuite simde_ssse3_emul_test_suite;
 
-MunitSuite simde_sse4_1_test_suite;
-MunitSuite simde_sse4_1_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse4_1_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse4_1_emul_test_suite;
 
-MunitSuite simde_sse4_2_test_suite;
-MunitSuite simde_sse4_2_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse4_2_test_suite;
+HEDLEY_C_DECL MunitSuite simde_sse4_2_emul_test_suite;
 
-MunitSuite simde_avx_test_suite;
-MunitSuite simde_avx_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_avx_test_suite;
+HEDLEY_C_DECL MunitSuite simde_avx_emul_test_suite;
 
-MunitSuite simde_avx2_test_suite;
-MunitSuite simde_avx2_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_avx2_test_suite;
+HEDLEY_C_DECL MunitSuite simde_avx2_emul_test_suite;
 
-MunitSuite simde_fma_test_suite;
-MunitSuite simde_fma_emul_test_suite;
+HEDLEY_C_DECL MunitSuite simde_fma_test_suite;
+HEDLEY_C_DECL MunitSuite simde_fma_emul_test_suite;
 
 
 #define simde_assert_m64_f32(a, op, b) \
@@ -88,15 +88,6 @@ MunitSuite simde_fma_emul_test_suite;
   simde_assert_typev(simde_float32, "f", 4, (simde_float32*) &(a), op, (simde_float32*) &(b))
 #define simde_assert_m128_f32_close(a, b, precision) \
   simde_assert_f32v_close(simde_float32, 4, (simde_float32*) &(a), (simde_float32*) &(b), precision)
-
-// #define simde_assert_m128i_u8(a, op, b) \
-//   simde_assert_typev(uint8_t, PRIu8, 16, (uint8_t*) &(a), op, (uint8_t*) &(b))
-// #define simde_assert_m128i_u16(a, op, b) \
-//   simde_assert_typev(uint16_t, PRIu16, 8, (uint16_t*) &(a), op, (uint16_t*) &(b))
-// #define simde_assert_m128i_u32(a, op, b) \
-//   simde_assert_typev(uint32_t, PRIu32, 4, (uint32_t*) &(a), op, (uint32_t*) &(b))
-// #define simde_assert_m128i_u64(a, op, b) \
-//   simde_assert_typev(uint64_t, PRIu64, 2, (uint64_t*) &(a), op, (uint64_t*) &(b))
 
 #define simde_assert_m128d_f32(a, op, b) \
   simde_assert_typev(simde_float32, "f", 4, (simde_float32*) &(a), op, (simde_float32*) &(b))
