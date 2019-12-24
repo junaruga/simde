@@ -1912,8 +1912,6 @@ test_simde_mm256_castpd128_pd256(const MunitParameter params[], void* data) {
 
   for (size_t i = 0 ; i < (sizeof(test_vec) / sizeof(test_vec[0])); i++) {
     simde__m256d r = simde_mm256_castpd128_pd256(test_vec[i].a);
-    simde__m128d t = r.m128d[0];
-    t = test_vec[i].r.m128d[0];
     simde_assert_m128d_equal(r.m128d[0], test_vec[i].r.m128d[0]);
   }
 

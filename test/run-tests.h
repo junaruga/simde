@@ -1,0 +1,34 @@
+#if !defined(SIMDE_RUN_TESTS_H)
+#define SIMDE_RUN_TESTS_H
+
+#include  "../simde/hedley.h"
+#include "munit/munit.h"
+
+#if defined(__cplusplus)
+#  define SIMDE_TESTS_CURRENT_LANG cpp
+#else
+#  define SIMDE_TESTS_CURRENT_LANG c
+#endif
+
+#if defined(SIMDE_NO_NATIVE)
+#  define SIMDE_TESTS_CURRENT_NATIVE emul
+#else
+#  define SIMDE_TESTS_CURRENT_NATIVE native
+#endif
+
+#if !defined(SIMDE_TESTS_ISAX_NAME)
+#  define SIMDE_TESTS_ISAX_NAME undefined
+#endif
+
+#define SIMDE_TESTS_GENERATE_SYMBOL_FULL(sym, arch, isa, native, lang) \
+  HEDLEY_CONCAT(HEDLEY_CONCAT(HEDLEY_CONCAT(HEDLEY_CONCAT(HEDLEY_CONCAT(HEDLEY_CONCAT(HEDLEY_CONCAT(HEDLEY_CONCAT(simde_tests_, HEDLEY_CONCAT(arch, _)), isa), _), native), _), lang),_),sym)
+#define SIMDE_TESTS_GENERATE_SYMBOL(sym) \
+  SIMDE_TESTS_GENERATE_SYMBOL_FULL(sym, SIMDE_TESTS_CURRENT_ARCH, SIMDE_TESTS_CURRENT_ISA, SIMDE_TESTS_CURRENT_NATIVE, SIMDE_TESTS_CURRENT_LANG)
+
+#define SIMDE_TESTS_GENERATE_NAME(name) \
+  "/" HEDLEY_STRINGIFY(isa) "/" HEDLEY_STRINGIFY(name) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_NATIVE) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_LANG)
+
+#define SIMDE_TESTS_DEFINE_TEST(name) \
+  { (char*) SIMDE_TESTS_GENERATE_NAME(name), test_simde_##name, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }
+
+#endif /* !defined(SIMDE_RUN_TESTS_H) */

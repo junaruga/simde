@@ -1,0 +1,12 @@
+#define SIMDE_TESTS_CURRENT_ARCH x86
+
+#include "../run-tests.h"
+
+HEDLEY_BEGIN_C_DECLS
+
+MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL_FULL(suite, SIMDE_TESTS_CURRENT_ARCH, xxx, native, c)(void);
+MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL_FULL(suite, SIMDE_TESTS_CURRENT_ARCH, xxx, native, cpp)(void);
+MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL_FULL(suite, SIMDE_TESTS_CURRENT_ARCH, xxx, emul,   c)(void);
+MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL_FULL(suite, SIMDE_TESTS_CURRENT_ARCH, xxx, emul,   cpp)(void);
+
+HEDLEY_END_C_DECLS
