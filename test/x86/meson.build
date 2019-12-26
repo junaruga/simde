@@ -1,5 +1,5 @@
 simde_test_x86_sources = [
-  'isa.c'
+  'mmx.c'
   # 'sse.c',
   # 'sse2.c',
   # 'sse3.c',

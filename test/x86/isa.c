@@ -1,8 +1,5 @@
 #define SIMDE_TESTS_CURRENT_ISA xxx
-
 #include "test-x86-internal.h"
-
-#include <stdio.h>
 
 static MunitResult
 test_simde_mm_foo_bar(const MunitParameter params[], void* data) {
