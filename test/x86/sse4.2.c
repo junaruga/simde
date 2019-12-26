@@ -21,7 +21,8 @@
  * SOFTWARE.
  */
 
-#include "x86-internal.h"
+#define SIMDE_TESTS_CURRENT_ISA sse4_2
+#include "test-x86-internal.h"
 #include "../../simde/x86/sse4.2.h"
 
 #include <stdio.h>
@@ -36,14 +37,8 @@ static MunitTest test_suite_tests[] = {
   { NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }
 };
 
-#if defined(SIMDE_NO_NATIVE)
-#  define simde_sse4_2_test_suite simde_sse4_2_emul_test_suite
-#endif
+HEDLEY_C_DECL MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL(suite)(void) {
+  static MunitSuite suite = { (char*) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_ISA), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
 
-MunitSuite simde_sse4_2_test_suite = {
-  (char*) "/sse4.2",
-  test_suite_tests,
-  NULL,
-  1,
-  MUNIT_SUITE_OPTION_NONE
-};
+  return &suite;
+}

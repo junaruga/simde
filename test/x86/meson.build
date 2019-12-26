@@ -1,14 +1,14 @@
 simde_test_x86_sources = [
-  'mmx.c'
-  # 'sse.c',
-  # 'sse2.c',
-  # 'sse3.c',
-  # 'ssse3.c',
-  # 'sse4.1.c',
-  # 'sse4.2.c',
-  # 'avx.c',
-  # 'avx2.c',
-  # 'fma.c'
+  'mmx.c',
+  'sse.c',
+  'sse2.c',
+  'sse3.c',
+  'ssse3.c',
+  'sse4.1.c',
+  'sse4.2.c',
+  'avx.c',
+  'avx2.c',
+  'fma.c'
 ]
 
 foreach src : simde_test_x86_sources

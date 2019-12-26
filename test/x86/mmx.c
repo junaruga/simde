@@ -25,10 +25,6 @@
 #include "test-x86-internal.h"
 #include "../../simde/x86/mmx.h"
 
-#if HEDLEY_HAS_WARNING("-Wsign-conversion")
-#  pragma clang diagnostic ignored "-Wsign-conversion"
-#endif
-
 static MunitResult
 test_simde_mm_set_pi8(const MunitParameter params[], void* data) {
   (void) params;

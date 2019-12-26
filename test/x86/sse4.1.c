@@ -21,7 +21,8 @@
  * SOFTWARE.
  */
 
-#include "x86-internal.h"
+#define SIMDE_TESTS_CURRENT_ISA sse4_1
+#include "test-x86-internal.h"
 #include "../../simde/x86/sse4.1.h"
 
 #include <stdio.h>
@@ -3150,94 +3151,88 @@ test_simde_mm_testz_si128(const MunitParameter params[], void* data) {
 }
 
 static MunitTest test_suite_tests[] = {
-  TEST_FUNC(mm_blend_epi16),
-  TEST_FUNC(mm_blend_pd),
-  TEST_FUNC(mm_blend_ps),
-  TEST_FUNC(mm_blendv_epi8),
-  TEST_FUNC(mm_blendv_pd),
-  TEST_FUNC(mm_blendv_ps),
+  SIMDE_TESTS_DEFINE_TEST(mm_blend_epi16),
+  SIMDE_TESTS_DEFINE_TEST(mm_blend_pd),
+  SIMDE_TESTS_DEFINE_TEST(mm_blend_ps),
+  SIMDE_TESTS_DEFINE_TEST(mm_blendv_epi8),
+  SIMDE_TESTS_DEFINE_TEST(mm_blendv_pd),
+  SIMDE_TESTS_DEFINE_TEST(mm_blendv_ps),
 
-  TEST_FUNC(mm_ceil_pd),
-  TEST_FUNC(mm_ceil_ps),
-  TEST_FUNC(mm_ceil_sd),
-  TEST_FUNC(mm_ceil_ss),
+  SIMDE_TESTS_DEFINE_TEST(mm_ceil_pd),
+  SIMDE_TESTS_DEFINE_TEST(mm_ceil_ps),
+  SIMDE_TESTS_DEFINE_TEST(mm_ceil_sd),
+  SIMDE_TESTS_DEFINE_TEST(mm_ceil_ss),
 
-  TEST_FUNC(mm_cmpeq_epi64),
+  SIMDE_TESTS_DEFINE_TEST(mm_cmpeq_epi64),
 
-  TEST_FUNC(mm_cvtepi8_epi16),
-  TEST_FUNC(mm_cvtepi8_epi32),
-  TEST_FUNC(mm_cvtepi8_epi64),
-  TEST_FUNC(mm_cvtepu8_epi16),
-  TEST_FUNC(mm_cvtepu8_epi32),
-  TEST_FUNC(mm_cvtepu8_epi64),
-  TEST_FUNC(mm_cvtepi16_epi32),
-  TEST_FUNC(mm_cvtepi16_epi64),
-  TEST_FUNC(mm_cvtepu16_epi32),
-  TEST_FUNC(mm_cvtepu16_epi64),
-  TEST_FUNC(mm_cvtepi32_epi64),
-  TEST_FUNC(mm_cvtepu32_epi64),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepi8_epi16),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepi8_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepi8_epi64),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepu8_epi16),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepu8_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepu8_epi64),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepi16_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepi16_epi64),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepu16_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepu16_epi64),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepi32_epi64),
+  SIMDE_TESTS_DEFINE_TEST(mm_cvtepu32_epi64),
 
-  TEST_FUNC(mm_dp_pd),
-  TEST_FUNC(mm_dp_ps),
+  SIMDE_TESTS_DEFINE_TEST(mm_dp_pd),
+  SIMDE_TESTS_DEFINE_TEST(mm_dp_ps),
 
-  TEST_FUNC(mm_extract_epi8),
-  TEST_FUNC(mm_extract_epi32),
-  TEST_FUNC(mm_extract_epi64),
+  SIMDE_TESTS_DEFINE_TEST(mm_extract_epi8),
+  SIMDE_TESTS_DEFINE_TEST(mm_extract_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_extract_epi64),
 
-  TEST_FUNC(mm_floor_pd),
-  TEST_FUNC(mm_floor_ps),
-  TEST_FUNC(mm_floor_sd),
-  TEST_FUNC(mm_floor_ss),
+  SIMDE_TESTS_DEFINE_TEST(mm_floor_pd),
+  SIMDE_TESTS_DEFINE_TEST(mm_floor_ps),
+  SIMDE_TESTS_DEFINE_TEST(mm_floor_sd),
+  SIMDE_TESTS_DEFINE_TEST(mm_floor_ss),
 
-  TEST_FUNC(mm_insert_epi8),
-  TEST_FUNC(mm_insert_epi32),
-  TEST_FUNC(mm_insert_epi64),
-  TEST_FUNC(mm_insert_ps),
+  SIMDE_TESTS_DEFINE_TEST(mm_insert_epi8),
+  SIMDE_TESTS_DEFINE_TEST(mm_insert_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_insert_epi64),
+  SIMDE_TESTS_DEFINE_TEST(mm_insert_ps),
 
-  TEST_FUNC(mm_max_epi8),
-  TEST_FUNC(mm_max_epi32),
-  TEST_FUNC(mm_max_epu16),
-  TEST_FUNC(mm_max_epu32),
+  SIMDE_TESTS_DEFINE_TEST(mm_max_epi8),
+  SIMDE_TESTS_DEFINE_TEST(mm_max_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_max_epu16),
+  SIMDE_TESTS_DEFINE_TEST(mm_max_epu32),
 
-  TEST_FUNC(mm_min_epi8),
-  TEST_FUNC(mm_min_epi32),
-  TEST_FUNC(mm_min_epu16),
-  TEST_FUNC(mm_min_epu32),
+  SIMDE_TESTS_DEFINE_TEST(mm_min_epi8),
+  SIMDE_TESTS_DEFINE_TEST(mm_min_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_min_epu16),
+  SIMDE_TESTS_DEFINE_TEST(mm_min_epu32),
 
-  TEST_FUNC(mm_minpos_epu16),
+  SIMDE_TESTS_DEFINE_TEST(mm_minpos_epu16),
 
-  TEST_FUNC(mm_mpsadbw_epu8),
+  SIMDE_TESTS_DEFINE_TEST(mm_mpsadbw_epu8),
 
-  TEST_FUNC(mm_mul_epi32),
-  TEST_FUNC(mm_mullo_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_mul_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_mullo_epi32),
 
-  TEST_FUNC(mm_packus_epi32),
+  SIMDE_TESTS_DEFINE_TEST(mm_packus_epi32),
 
-  TEST_FUNC(mm_round_pd),
-  TEST_FUNC(mm_round_ps),
-  TEST_FUNC(mm_round_sd),
-  TEST_FUNC(mm_round_ss),
+  SIMDE_TESTS_DEFINE_TEST(mm_round_pd),
+  SIMDE_TESTS_DEFINE_TEST(mm_round_ps),
+  SIMDE_TESTS_DEFINE_TEST(mm_round_sd),
+  SIMDE_TESTS_DEFINE_TEST(mm_round_ss),
 
-  TEST_FUNC(mm_stream_load_si128),
+  SIMDE_TESTS_DEFINE_TEST(mm_stream_load_si128),
 
-  TEST_FUNC(mm_test_all_ones),
-  TEST_FUNC(mm_test_all_zeros),
-  TEST_FUNC(mm_test_mix_ones_zeros),
-  TEST_FUNC(mm_testc_si128),
-  TEST_FUNC(mm_testnzc_si128),
-  TEST_FUNC(mm_testz_si128),
+  SIMDE_TESTS_DEFINE_TEST(mm_test_all_ones),
+  SIMDE_TESTS_DEFINE_TEST(mm_test_all_zeros),
+  SIMDE_TESTS_DEFINE_TEST(mm_test_mix_ones_zeros),
+  SIMDE_TESTS_DEFINE_TEST(mm_testc_si128),
+  SIMDE_TESTS_DEFINE_TEST(mm_testnzc_si128),
+  SIMDE_TESTS_DEFINE_TEST(mm_testz_si128),
 
   { NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }
 };
 
-#if defined(SIMDE_NO_NATIVE)
-#  define simde_sse4_1_test_suite simde_sse4_1_emul_test_suite
-#endif
+HEDLEY_C_DECL MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL(suite)(void) {
+  static MunitSuite suite = { (char*) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_ISA), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
 
-MunitSuite simde_sse4_1_test_suite = {
-  (char*) "/sse4.1",
-  test_suite_tests,
-  NULL,
-  1,
-  MUNIT_SUITE_OPTION_NONE
-};
+  return &suite;
+}
