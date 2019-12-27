@@ -1,7 +1,6 @@
 #include "test-x86.h"
 #include "test-x86-internal.h"
 
-#include <bits/types/__FILE.h>
 #include <stdio.h>
 
 #define SET_CHILDREN_FOR_ARCH(isax) \

@@ -21,15 +21,9 @@
  * SOFTWARE.
  */
 
-#define SIMDE_TESTS_CURRENT_ISA sse4_2
+#define SIMDE_TESTS_CURRENT_ISAX sse4_2
 #include "test-x86-internal.h"
 #include "../../simde/x86/sse4.2.h"
-
-#include <stdio.h>
-
-#if HEDLEY_HAS_WARNING("-Wsign-conversion")
-#  pragma clang diagnostic ignored "-Wsign-conversion"
-#endif
 
 static MunitTest test_suite_tests[] = {
   /* { (char*) "/sse4.2/mm_set_epi8",      test_simde_mm_set_epi8,      NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }, */
@@ -38,7 +32,7 @@ static MunitTest test_suite_tests[] = {
 };
 
 HEDLEY_C_DECL MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL(suite)(void) {
-  static MunitSuite suite = { (char*) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_ISA), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
+  static MunitSuite suite = { (char*) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_ISAX), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
 
   return &suite;
 }

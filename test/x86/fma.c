@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-#define SIMDE_TESTS_CURRENT_ISA fma
+#define SIMDE_TESTS_CURRENT_ISAX fma
 #include "test-x86-internal.h"
 #include "../../simde/x86/fma.h"
 
@@ -2532,7 +2532,7 @@ static MunitTest test_suite_tests[] = {
 };
 
 HEDLEY_C_DECL MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL(suite)(void) {
-  static MunitSuite suite = { (char*) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_ISA), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
+  static MunitSuite suite = { (char*) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_ISAX), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
 
   return &suite;
 }

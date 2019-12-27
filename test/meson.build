@@ -55,9 +55,10 @@ if not c_openmp_simd
 endif
 
 subdir('x86')
+subdir('arm')
 
 executable('run-tests', 'run-tests.c',
-           link_with: [munit, simde_tests_x86],
+           link_with: [munit, simde_tests_x86, simde_tests_arm],
            dependencies: simde_deps,
            c_args: simde_c_args + simde_c_defs,
            cpp_args: simde_cxx_args + simde_cxx_defs)
