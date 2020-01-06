@@ -21,7 +21,8 @@
  * SOFTWARE.
  */
 
-#include "simd-js.h"
+#define SIMDE_TESTS_CURRENT_NEON_OP add
+#include "test-js-internal.h"
 #include "../../simde/simd-js/simd-js.h"
 
 #include <math.h>
@@ -1238,14 +1239,8 @@ static MunitTest test_suite_tests[] = {
   { NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }
 };
 
-#if defined(SIMDE_NO_NATIVE)
-#  define simde_simd_js_int32x4_test_suite simde_simd_js_int32x4_emul_test_suite
-#endif
+HEDLEY_C_DECL MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL(SIMDE_TESTS_CURRENT_NEON_OP)(void) {
+  static MunitSuite suite = { (char*) "/v" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_NEON_OP), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
 
-MunitSuite simde_simd_js_int32x4_test_suite = {
-  (char*) "/int32x4",
-  test_suite_tests,
-  NULL,
-  1,
-  MUNIT_SUITE_OPTION_NONE
-};
+  return &suite;
+}

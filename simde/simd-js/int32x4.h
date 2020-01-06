@@ -569,12 +569,6 @@ simde_em_int32x4
 simde_em_int32x4_load2 (const int32_t src[HEDLEY_ARRAY_PARAM(2)]) {
 #if defined(SIMDE_EM_NATIVE)
   return SIMDE_EM_INT32X4_C(emscripten_int32x4_load2(src));
-#elif defined(SIMDE_EM_SSE2)
-  __m128i r;
-  memcpy(&(((int32_t*) &r)[0]), &(src[0]), sizeof(int32_t));
-  memcpy(&(((int32_t*) &r)[1]), &(src[1]), sizeof(int32_t));
-  memset(&(((int32_t*) &r)[2]), 0, sizeof(int32_t) * 2);
-  return SIMDE_EM_INT32X4_SSE_C(r);
 #elif defined(SIMDE_EM_NEON)
   int32_t tmp[4] = { 0, };
   memcpy(&(tmp[0]), src, sizeof(int32_t) * 2);

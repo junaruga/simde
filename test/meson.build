@@ -56,9 +56,10 @@ endif
 
 subdir('x86')
 subdir('arm')
+subdir('simd-js')
 
 executable('run-tests', 'run-tests.c',
-           link_with: [munit, simde_tests_x86, simde_tests_arm],
+           link_with: [munit, simde_tests_x86, simde_tests_arm, simde_tests_js],
            dependencies: simde_deps,
            c_args: simde_c_args + simde_c_defs,
            cpp_args: simde_cxx_args + simde_cxx_defs)
