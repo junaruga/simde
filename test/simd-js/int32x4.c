@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-#define SIMDE_TESTS_CURRENT_NEON_OP add
+#define SIMDE_TESTS_CURRENT_ISAX int32x4
 #include "test-js-internal.h"
 #include "../../simde/simd-js/simd-js.h"
 
@@ -1206,41 +1206,43 @@ test_simde_em_int32x4_shuffle(const MunitParameter params[], void* data) {
 }
 
 static MunitTest test_suite_tests[] = {
-  SIMD_JS_TEST_FUNC(int32x4, set),
-  SIMD_JS_TEST_FUNC(int32x4, splat),
-  SIMD_JS_TEST_FUNC(int32x4, add),
-  SIMD_JS_TEST_FUNC(int32x4, sub),
-  SIMD_JS_TEST_FUNC(int32x4, mul),
-  SIMD_JS_TEST_FUNC(int32x4, neg),
-  SIMD_JS_TEST_FUNC(int32x4, and),
-  SIMD_JS_TEST_FUNC(int32x4, xor),
-  SIMD_JS_TEST_FUNC(int32x4, or),
-  SIMD_JS_TEST_FUNC(int32x4, not),
-  SIMD_JS_TEST_FUNC(int32x4, lessThan),
-  SIMD_JS_TEST_FUNC(int32x4, lessThanOrEqual),
-  SIMD_JS_TEST_FUNC(int32x4, greaterThan),
-  SIMD_JS_TEST_FUNC(int32x4, greaterThanOrEqual),
-  SIMD_JS_TEST_FUNC(int32x4, equal),
-  SIMD_JS_TEST_FUNC(int32x4, notEqual),
-  SIMD_JS_TEST_FUNC(int32x4, anyTrue),
-  SIMD_JS_TEST_FUNC(int32x4, allTrue),
-  SIMD_JS_TEST_FUNC(int32x4, select),
-  SIMD_JS_TEST_FUNC(int32x4, shiftLeftByScalar),
-  SIMD_JS_TEST_FUNC(int32x4, shiftRightByScalar),
-  SIMD_JS_TEST_FUNC(int32x4, store),
-  SIMD_JS_TEST_FUNC(int32x4, store1),
-  SIMD_JS_TEST_FUNC(int32x4, store2),
-  SIMD_JS_TEST_FUNC(int32x4, load),
-  SIMD_JS_TEST_FUNC(int32x4, load1),
-  SIMD_JS_TEST_FUNC(int32x4, load2),
-  SIMD_JS_TEST_FUNC(int32x4, swizzle),
-  SIMD_JS_TEST_FUNC(int32x4, shuffle),
+  SIMDE_JS_TESTS_DEFINE_TEST(set),
+  SIMDE_JS_TESTS_DEFINE_TEST(splat),
+  SIMDE_JS_TESTS_DEFINE_TEST(add),
+  SIMDE_JS_TESTS_DEFINE_TEST(sub),
+  SIMDE_JS_TESTS_DEFINE_TEST(mul),
+  SIMDE_JS_TESTS_DEFINE_TEST(neg),
+  SIMDE_JS_TESTS_DEFINE_TEST(and),
+  SIMDE_JS_TESTS_DEFINE_TEST(xor),
+  SIMDE_JS_TESTS_DEFINE_TEST(or),
+  SIMDE_JS_TESTS_DEFINE_TEST(not),
+  SIMDE_JS_TESTS_DEFINE_TEST(lessThan),
+  SIMDE_JS_TESTS_DEFINE_TEST(lessThanOrEqual),
+  SIMDE_JS_TESTS_DEFINE_TEST(greaterThan),
+  SIMDE_JS_TESTS_DEFINE_TEST(greaterThanOrEqual),
+  SIMDE_JS_TESTS_DEFINE_TEST(equal),
+  SIMDE_JS_TESTS_DEFINE_TEST(notEqual),
+  SIMDE_JS_TESTS_DEFINE_TEST(anyTrue),
+  SIMDE_JS_TESTS_DEFINE_TEST(allTrue),
+  SIMDE_JS_TESTS_DEFINE_TEST(select),
+  SIMDE_JS_TESTS_DEFINE_TEST(shiftLeftByScalar),
+  SIMDE_JS_TESTS_DEFINE_TEST(shiftRightByScalar),
+  SIMDE_JS_TESTS_DEFINE_TEST(store),
+  SIMDE_JS_TESTS_DEFINE_TEST(store1),
+  SIMDE_JS_TESTS_DEFINE_TEST(store2),
+  SIMDE_JS_TESTS_DEFINE_TEST(load),
+  SIMDE_JS_TESTS_DEFINE_TEST(load1),
+  SIMDE_JS_TESTS_DEFINE_TEST(load2),
+  SIMDE_JS_TESTS_DEFINE_TEST(swizzle),
+  SIMDE_JS_TESTS_DEFINE_TEST(shuffle),
 
   { NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }
 };
 
-HEDLEY_C_DECL MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL(SIMDE_TESTS_CURRENT_NEON_OP)(void) {
-  static MunitSuite suite = { (char*) "/v" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_NEON_OP), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
+HEDLEY_C_DECL MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL(suite)(void) {
+  static MunitSuite suite = { (char*) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_ISAX), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
+
+  printf("%s:%d Hello, world!\n", __FILE__, __LINE__);
 
   return &suite;
 }

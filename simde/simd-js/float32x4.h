@@ -30,6 +30,7 @@
 #define SIMDE__EM_FLOAT32X4_H
 
 #include <math.h>
+#include <limits.h>
 
 SIMDE__BEGIN_DECLS
 
