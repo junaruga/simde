@@ -41,12 +41,16 @@ foreach omp_arg : ['-fopenmp-simd', '-qopenmp-simd']
 endforeach
 
 simde_native_c_flags = []
-if cc.has_argument('-march=native')
+if cc.has_argument('-march=native+simd')
+  simde_native_c_flags += '-march=native+simd'
+elif cc.has_argument('-march=native')
   simde_native_c_flags += '-march=native'
 endif
 
 simde_native_cxx_flags = []
-if cc.has_argument('-march=native')
+if cxx.has_argument('-march=native+simd')
+  simde_native_cxx_flags += '-march=native+simd'
+elif cxx.has_argument('-march=native')
   simde_native_cxx_flags += '-march=native'
 endif
 
@@ -61,5 +65,5 @@ subdir('simd-js')
 executable('run-tests', 'run-tests.c',
            link_with: [munit, simde_tests_x86, simde_tests_arm, simde_tests_js],
            dependencies: simde_deps,
-           c_args: simde_c_args + simde_c_defs,
-           cpp_args: simde_cxx_args + simde_cxx_defs)
+           c_args: simde_c_args + simde_c_defs + simde_native_c_flags,
+           cpp_args: simde_cxx_args + simde_cxx_defs + simde_native_cxx_flags)
