@@ -21,7 +21,8 @@
  * SOFTWARE.
  */
 
-#include "simd-js.h"
+#define SIMDE_TESTS_CURRENT_ISAX float32x4
+#include "test-js-internal.h"
 #include "../../simde/simd-js/simd-js.h"
 
 #include <math.h>
@@ -602,31 +603,27 @@ test_simde_em_float32x4_abs(const MunitParameter params[], void* data) {
 }
 
 static MunitTest test_suite_tests[] = {
-  SIMD_JS_TEST_FUNC(float32x4, set),
-  SIMD_JS_TEST_FUNC(float32x4, splat),
-  SIMD_JS_TEST_FUNC(float32x4, add),
-  SIMD_JS_TEST_FUNC(float32x4, sub),
-  SIMD_JS_TEST_FUNC(float32x4, mul),
-  SIMD_JS_TEST_FUNC(float32x4, div),
-  SIMD_JS_TEST_FUNC(float32x4, max),
-  SIMD_JS_TEST_FUNC(float32x4, min),
-  SIMD_JS_TEST_FUNC(float32x4, neg),
-  SIMD_JS_TEST_FUNC(float32x4, sqrt),
-  SIMD_JS_TEST_FUNC(float32x4, reciprocalApproximation),
-  SIMD_JS_TEST_FUNC(float32x4, reciprocalSqrtApproximation),
-  SIMD_JS_TEST_FUNC(float32x4, abs),
+  SIMDE_JS_TESTS_DEFINE_TEST(set),
+  SIMDE_JS_TESTS_DEFINE_TEST(splat),
+  SIMDE_JS_TESTS_DEFINE_TEST(add),
+  SIMDE_JS_TESTS_DEFINE_TEST(sub),
+  SIMDE_JS_TESTS_DEFINE_TEST(mul),
+  SIMDE_JS_TESTS_DEFINE_TEST(div),
+  SIMDE_JS_TESTS_DEFINE_TEST(max),
+  SIMDE_JS_TESTS_DEFINE_TEST(min),
+  SIMDE_JS_TESTS_DEFINE_TEST(neg),
+  SIMDE_JS_TESTS_DEFINE_TEST(sqrt),
+  SIMDE_JS_TESTS_DEFINE_TEST(reciprocalApproximation),
+  SIMDE_JS_TESTS_DEFINE_TEST(reciprocalSqrtApproximation),
+  SIMDE_JS_TESTS_DEFINE_TEST(abs),
 
   { NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }
 };
 
-#if defined(SIMDE_NO_NATIVE)
-#  define simde_simd_js_float32x4_test_suite simde_simd_js_float32x4_emul_test_suite
-#endif
+HEDLEY_C_DECL MunitSuite* SIMDE_TESTS_GENERATE_SYMBOL(suite)(void) {
+  static MunitSuite suite = { (char*) "/" HEDLEY_STRINGIFY(SIMDE_TESTS_CURRENT_ISAX), test_suite_tests, NULL, 1, MUNIT_SUITE_OPTION_NONE };
 
-MunitSuite simde_simd_js_float32x4_test_suite = {
-  (char*) "/float32x4",
-  test_suite_tests,
-  NULL,
-  1,
-  MUNIT_SUITE_OPTION_NONE
-};
+  printf("%s:%d Hello, world!\n", __FILE__, __LINE__);
+
+  return &suite;
+}

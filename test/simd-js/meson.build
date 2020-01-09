@@ -1,5 +1,6 @@
 simde_test_js_sources = [
-  'int32x4.c'
+  'int32x4.c',
+  'float32x4.c'
 ]
 
 foreach src : simde_test_js_sources

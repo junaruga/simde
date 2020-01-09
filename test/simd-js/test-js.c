@@ -11,13 +11,14 @@
 
 MunitSuite*
 simde_tests_js_get_suite(void) {
-  static MunitSuite children[(1 * 4) + 1];
+  static MunitSuite children[(2 * 4) + 1];
   static MunitSuite suite = { "/js", NULL, children, 1, MUNIT_SUITE_OPTION_NONE };
   static const MunitSuite empty = { NULL, NULL, NULL, 1, MUNIT_SUITE_OPTION_NONE };
 
   size_t i = 0;
   
   SET_CHILDREN_FOR_ARCH(int32x4);
+  SET_CHILDREN_FOR_ARCH(float32x4);
 
   children[i++] = empty;
 
