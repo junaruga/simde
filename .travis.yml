@@ -6,31 +6,18 @@ branches:
 matrix:
   include:
     - env: C_COMPILER=gcc CFLAGS=-march=native
-      addons:
-        apt:
-          packages:
-          - meson
     - env: ARCH=i686 C_COMPILER=gcc-8 CFLAGS=-march=i686
       dist: bionic
-      addons:
-        apt:
-          packages:
-          - meson
     - env:
         - ARCH=i686
         - C_COMPILER=gcc-8
         - CFLAGS='-march=i686 -DSIMDE_NO_SHUFFLE_VECTOR -mno-avx2 -mno-avx -mno-sse4.2 -mno-sse4.1 -mno-ssse3 -mno-sse3'
       dist: bionic
-      addons:
-        apt:
-          packages:
-          - meson
     - env: C_COMPILER=clang CFLAGS=-march=native
       addons:
         apt:
           packages:
           - clang
-          - meson
     - env: C_COMPILER=gcc-4.4 CFLAGS=-march=native
       dist: trusty
       addons:
@@ -41,7 +28,6 @@ matrix:
           packages:
           - gcc-4.4
           - g++-4.4
-          - meson
     - env: C_COMPILER=aarch64-linux-gnu-gcc
       addons:
         apt:
@@ -49,7 +35,6 @@ matrix:
           - gcc-aarch64-linux-gnu
           - g++-aarch64-linux-gnu
           - qemu
-          - meson
     - env: C_COMPILER=clang-3.5 CFLAGS=-march=native
       dist: trusty
       addons:
@@ -60,12 +45,7 @@ matrix:
           - george-edison55-precise-backports
           packages:
           - clang-3.5
-          - meson
     - env: C_COMPILER=pgcc
-      addons:
-        apt:
-          packages:
-          - meson
     - os: osx
     # - env: C_COMPILER=emcc
     #   addons:
@@ -75,6 +55,7 @@ matrix:
     #       - cmake-data
 
 before_install:
+- pip install meson ninja
 ###
 ## If we use the matrix to set CC/CXX Travis overwrites the values,
 ## so instead we use C/CXX_COMPILER, then copy the values to CC/CXX
