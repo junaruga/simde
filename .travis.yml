@@ -55,7 +55,7 @@ matrix:
     #       - cmake-data
 
 before_install:
-- pip install meson ninja
+- pip3 install meson ninja
 ###
 ## If we use the matrix to set CC/CXX Travis overwrites the values,
 ## so instead we use C/CXX_COMPILER, then copy the values to CC/CXX
