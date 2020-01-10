@@ -3,13 +3,16 @@ cache: ccache
 branches:
   except:
     - /^(wip\/)?(appveyor|msvc|mingw|windows)(\-.+)?$/
+
+addons:
+  apt:
+    packages:
+    - python3-pip
+    - python3-setuptools
+
 matrix:
   include:
     - env: C_COMPILER=gcc
-      addons:
-        apt:
-          packages:
-          - python3-pip
     # - env: ARCH=i686 C_COMPILER=gcc-8 CFLAGS=-march=i686
     #   dist: bionic
     # - env:
