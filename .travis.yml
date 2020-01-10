@@ -5,54 +5,53 @@ branches:
     - /^(wip\/)?(appveyor|msvc|mingw|windows)(\-.+)?$/
 matrix:
   include:
-    - env: C_COMPILER=gcc CFLAGS=-march=native
-    - env: ARCH=i686 C_COMPILER=gcc-8 CFLAGS=-march=i686
-      dist: bionic
-    - env:
-        - ARCH=i686
-        - C_COMPILER=gcc-8
-        - CFLAGS='-march=i686 -DSIMDE_NO_SHUFFLE_VECTOR -mno-avx2 -mno-avx -mno-sse4.2 -mno-sse4.1 -mno-ssse3 -mno-sse3'
-      dist: bionic
-    - env: C_COMPILER=clang CFLAGS=-march=native
+    - env: C_COMPILER=gcc
       addons:
         apt:
           packages:
-          - clang
-    - env: C_COMPILER=gcc-4.4 CFLAGS=-march=native
-      dist: trusty
-      addons:
-        apt:
-          sources:
-          - ubuntu-toolchain-r-test
-          - george-edison55-precise-backports
-          packages:
-          - gcc-4.4
-          - g++-4.4
-    - env: C_COMPILER=aarch64-linux-gnu-gcc
-      addons:
-        apt:
-          packages:
-          - gcc-aarch64-linux-gnu
-          - g++-aarch64-linux-gnu
-          - qemu
-    - env: C_COMPILER=clang-3.5 CFLAGS=-march=native
-      dist: trusty
-      addons:
-        apt:
-          sources:
-          - llvm-toolchain-precise-3.5
-          - ubuntu-toolchain-r-test
-          - george-edison55-precise-backports
-          packages:
-          - clang-3.5
-    - env: C_COMPILER=pgcc
-    - os: osx
-    # - env: C_COMPILER=emcc
+          - python3-pip
+    # - env: ARCH=i686 C_COMPILER=gcc-8 CFLAGS=-march=i686
+    #   dist: bionic
+    # - env:
+    #     - ARCH=i686
+    #     - C_COMPILER=gcc-8
+    #     - CFLAGS='-march=i686 -DSIMDE_NO_SHUFFLE_VECTOR -mno-avx2 -mno-avx -mno-sse4.2 -mno-sse4.1 -mno-ssse3 -mno-sse3'
+    #   dist: bionic
+    # - env: C_COMPILER=clang
     #   addons:
     #     apt:
     #       packages:
-    #       - cmake
-    #       - cmake-data
+    #       - clang
+    #       - python3-pip
+    # - env: C_COMPILER=gcc-4.4
+    #   dist: trusty
+    #   addons:
+    #     apt:
+    #       sources:
+    #       - ubuntu-toolchain-r-test
+    #       - george-edison55-precise-backports
+    #       packages:
+    #       - gcc-4.4
+    #       - g++-4.4
+    # - env: C_COMPILER=aarch64-linux-gnu-gcc
+    #   addons:
+    #     apt:
+    #       packages:
+    #       - gcc-aarch64-linux-gnu
+    #       - g++-aarch64-linux-gnu
+    #       - qemu
+    # - env: C_COMPILER=clang-3.5
+    #   dist: trusty
+    #   addons:
+    #     apt:
+    #       sources:
+    #       - llvm-toolchain-precise-3.5
+    #       - ubuntu-toolchain-r-test
+    #       - george-edison55-precise-backports
+    #       packages:
+    #       - clang-3.5
+    # - env: C_COMPILER=pgcc
+    # - os: osx
 
 before_install:
 - pip3 install meson ninja
