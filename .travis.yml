@@ -87,7 +87,7 @@ script:
 - if [ -n "${CXX_COMPILER}" ]; then export CC="${CXX_COMPILER}"; fi
 - cat /proc/cpuinfo || true
 - meson .. -Db_coverage=true
-- make VERBOSE=1
+- ninja --verbose
 - if [ "${C_COMPILER}" = "arm-linux-gnueabihf-gcc" ]; then
     qemu-arm ./run-tests;
   elif [ "${C_COMPILER}" = "aarch64-linux-gnu-gcc" ]; then
