@@ -19,14 +19,14 @@ matrix:
           - cmake
           - cmake-data
     - arch: ppc64le
-      env: C_COMPILER=gcc CFLAGS=-march=native
+      env: C_COMPILER=gcc
       addons:
         apt:
           packages:
           - cmake
           - cmake-data
     - arch: s390x
-      env: C_COMPILER=gcc CFLAGS=-march=native
+      env: C_COMPILER=gcc
       addons:
         apt:
           packages:
