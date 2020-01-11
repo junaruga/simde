@@ -11,6 +11,27 @@ matrix:
           packages:
           - cmake
           - cmake-data
+    - arch: arm64
+      env: C_COMPILER=gcc CFLAGS=-march=native
+      addons:
+        apt:
+          packages:
+          - cmake
+          - cmake-data
+    - arch: ppc64le
+      env: C_COMPILER=gcc CFLAGS=-march=native
+      addons:
+        apt:
+          packages:
+          - cmake
+          - cmake-data
+    - arch: s390x
+      env: C_COMPILER=gcc CFLAGS=-march=native
+      addons:
+        apt:
+          packages:
+          - cmake
+          - cmake-data
 
 before_install:
 ###
