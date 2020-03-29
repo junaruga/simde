@@ -78,6 +78,22 @@ jobs:
         - gcc
         - g++
 
+  - name: "clang-10 ppc64le"
+    arch: ppc64le
+    compiler: clang-10
+    env:
+    - ARCH_FLAGS="-mcpu=native"
+    - C_COMPILER=clang-10
+    - CXX_COMPILER=clang++-10
+    - COMPILER_FLAGS='-fsanitize=address,undefined'
+    addons:
+      apt:
+        sources:
+        - sourceline: 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-10 main'
+          key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+        packages:
+        - clang-10
+
   - name: "-DSIMDE_NO_SHUFFLE_VECTOR"
     env:
     - COMPILER_FLAGS=-DSIMDE_NO_SHUFFLE_VECTOR
