@@ -20,6 +20,7 @@ steps:
     - cd test/build
     - cmake ..
     - make -j
+    - ./run-tests
 trigger:
   branch:
     exclude:
@@ -47,6 +48,7 @@ steps:
     - cd test/build
     - cmake ..
     - make -j
+    - ./run-tests
     # `make` fails.
     failure: ignore
 trigger:
