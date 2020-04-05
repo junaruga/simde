@@ -1,0 +1,30 @@
+# See https://packit.dev/docs/configuration/ for the configuration.
+specfile_path: .packit/simde.spec
+# Set "bash" to the first element of the list, as one element list causes
+# an parsing error.
+current_version_command: ["bash", ".packit/show_version.sh"]
+upstream_package_name: simde
+downstream_package_name: simde
+
+# Valid metadata targets can be check by command
+# copr list-chroots
+jobs:
+- job: copr_build
+  trigger: pull_request
+  metadata:
+    targets:
+    - fedora-rawhide-x86_64
+    - fedora-rawhide-i386
+    - fedora-rawhide-aarch64
+    - fedora-rawhide-armhfp
+    # - fedora-32-x86_64
+    # - fedora-32-i386
+    # - fedora-32-aarch64
+    # - fedora-32-armhfp
+    # - fedora-31-x86_64
+    # - fedora-31-aarch64
+    # - fedora-31-armhfp
+    # - fedora-31-i386
+    # - fedora-30-x86_64
+    # - fedora-30-i386
+    # - fedora-30-aarch64
