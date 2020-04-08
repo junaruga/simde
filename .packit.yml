@@ -14,10 +14,10 @@ jobs:
   metadata:
     targets:
     - fedora-rawhide-x86_64
-    - fedora-rawhide-i386
-    - fedora-rawhide-aarch64
-    - fedora-rawhide-armhfp
-    # - fedora-32-x86_64
+    # - fedora-rawhide-i386
+    # - fedora-rawhide-aarch64
+    # - fedora-rawhide-armhfp
+    - fedora-32-x86_64
     # - fedora-32-i386
     # - fedora-32-aarch64
     # - fedora-32-armhfp
@@ -28,3 +28,14 @@ jobs:
     # - fedora-30-x86_64
     # - fedora-30-i386
     # - fedora-30-aarch64
+- job: tests
+  trigger: pull_request
+  metadata:
+    targets:
+    - fedora-rawhide-x86_64
+    - fedora-31-x86_64
+    - fedora-31-aarch64
+
+notifications:
+  pull_request:
+    successful_build: false
