@@ -9,7 +9,7 @@ steps:
 - name: test
   # Use armv7hl image on the Fedora official repository, as there is no Fedora armv7hl image on Docker Hub.
   # https://registry.fedoraproject.org/repo/fedora/tags/
-  image: registry.fedoraproject.org/fedora
+  image: registry.fedoraproject.org/fedora:32
   environment:
     CC: gcc
     CXX: g++
