@@ -22,7 +22,7 @@ steps:
   - rpm -q rpm --qf "%{arch}"
   - RPM_ARCH=$(rpm -q rpm --qf "%{arch}")
   - "echo RPM_ARCH=$RPM_ARCH"
-  - dnf install -y --forcearch "$RPM_ARCH" clang ninja-build git-core python3-pip
+  - dnf install -y --forcearch "$RPM_ARCH" --nogpgcheck clang ninja-build git-core python3-pip
   - pip3 install meson
   - git submodule update --init --recursive
   - mkdir -p build
