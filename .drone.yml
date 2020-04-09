@@ -18,6 +18,8 @@ steps:
   - cat /proc/cpuinfo
   # Disable unused RPM modular repository that could cause an error.
   # - sed -i '/^enabled=1$/ s/1/0/' /etc/yum.repos.d/*-modular.repo || true
+  - rpm -q rpm
+  - rpm -q rpm --qf "%{arch}"
   - RPM_ARCH=$(rpm -q rpm --qf "%{arch}")
   - dnf install -y --forcearch "${RPM_ARCH}" clang ninja-build git-core python3-pip
   - pip3 install meson
