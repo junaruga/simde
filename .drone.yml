@@ -266,3 +266,34 @@ steps:
   - ninja -v
   - ./test/run-tests
   failure: ignore
+
+---
+kind: pipeline
+type: docker
+name: "fedora gcc armv7hl flags"
+platform:
+  os: linux
+  arch: arm
+steps:
+- name: test
+  # Use armv7hl image on the Fedora official repository, as there is no Fedora armv7hl image on Docker Hub.
+  # https://registry.fedoraproject.org/repo/fedora/tags/
+  image: registry.fedoraproject.org/fedora
+  environment:
+    CC: gcc
+    CXX: g++
+  commands:
+  - uname -m
+  - cat /proc/cpuinfo
+  # Disable unused RPM modular repository that could cause an error.
+  - sed -i '/^enabled=1$/ s/1/0/' /etc/yum.repos.d/*-modular.repo || true
+  - dnf install -y clang ninja-build git-core python3-pip
+  - pip3 install meson
+  - git submodule update --init --recursive
+  - mkdir -p build
+  - cd build
+  - ARCH_FLAGS=$(rpm -E "%{optflags}")
+  - CFLAGS="$ARCH_FLAGS" CXXFLAGS="$ARCH_FLAGS" meson ..
+  - ninja -v
+  - ./test/run-tests
+  failure: ignore
