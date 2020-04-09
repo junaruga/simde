@@ -286,8 +286,9 @@ steps:
   - uname -m
   - cat /proc/cpuinfo
   # Disable unused RPM modular repository that could cause an error.
-  - sed -i '/^enabled=1$/ s/1/0/' /etc/yum.repos.d/*-modular.repo || true
-  - dnf install -y clang ninja-build git-core python3-pip
+  # - sed -i '/^enabled=1$/ s/1/0/' /etc/yum.repos.d/*-modular.repo || true
+  - RPM_ARCH=$(rpm -q rpm --qf "%{arch}")
+  - dnf install -y --forcearch "${RPM_ARCH}" clang ninja-build git-core python3-pip
   - pip3 install meson
   - git submodule update --init --recursive
   - mkdir -p build
