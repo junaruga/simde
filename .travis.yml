@@ -193,6 +193,20 @@ jobs:
   - name: s390x
     arch: s390x
 
+  - name: "gcc s390x -O2"
+    compiler: gcc
+    arch: s390x
+    env:
+    - COMPILER_FLAGS='-fsanitize=address,undefined'
+    - OPTIMIZATION_FLAGS='-O2'
+
+  - name: "clang s390x -O2"
+    compiler: clang
+    arch: s390x
+    env:
+    - COMPILER_FLAGS='-fsanitize=address,undefined'
+    - OPTIMIZATION_FLAGS='-O2'
+
   - name: amalgamate
     if: branch = master AND type != pull_request
     script:
