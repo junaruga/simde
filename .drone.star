@@ -242,11 +242,13 @@ def get_jobs():
     "custom": {
       "install": get_dnf_install_commands(["clang"]),
       "script": [
-        # optflags RPM macro works with gcc.
-        # Some flags and specs are not available with clang.
-        # https://lists.fedoraproject.org/archives/list/packaging@lists.fedoraproject.org/message/W5UFLUADNB4VF3OBUBSNAPOQL6XBCP74/
-        "ARCH_FLAGS=$(rpm -E '%{optflags}' | sed -e 's| -fstack-clash-protection||' -e 's| -specs=[^ ]*||g')",
-      ] + get_test_commands()
+        [
+          # optflags RPM macro works with gcc.
+          # Some flags and specs are not available with clang.
+          # https://lists.fedoraproject.org/archives/list/packaging@lists.fedoraproject.org/message/W5UFLUADNB4VF3OBUBSNAPOQL6XBCP74/
+          "ARCH_FLAGS=$(rpm -E '%{optflags}' | sed -e 's| -fstack-clash-protection||' -e 's| -specs=[^ ]*||g')",
+        ] + get_test_commands()
+      ]
     }
   }
 
