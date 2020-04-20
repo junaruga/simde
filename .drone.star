@@ -7,7 +7,7 @@ def get_test_commands():
     "mkdir -p build",
     "cd build",
     'CFLAGS="$ARCH_FLAGS" CXXFLAGS="$ARCH_FLAGS" meson .. || (cat meson-logs/meson-log.txt; false)',
-    "ninja -v || ninja-build -v",
+    '"$(command -v ninja || command -v ninja-build)" -v',
     "./test/run-tests",
   ]
 
